@@ -24,24 +24,19 @@ class UC_Bank:
         self.V_model_log = []
         
         # single cell param 
-        self.V_cell_range = [2.4, 3.6]  
-        self.R_cell = 0
-        self.C_cell = 0 
+        self.V_cell_range = [2.2, 3.8]  # 2.2 = discharged , 3.8 fully charged 
+        self.R_cell = 0.13 # Ohm 
+        self.Spec_pow = 9300 # specific power W/kg 
+        self.Spec_en = 11 # specific energy Wh/kg 
+        self.En_dens = [19, 25] # Energy density Wh/L 
 
         # model creation -- ECM calculation 
 
         self.V_model = 0
         self.R_model = 0
-        self.C_model = 0 
         self.Soc_model = 0 
 
         self.SoC_log.append(self.Soc_model)
-
-    def assign_order(self, agentId, timestep, agent_pos):
-        self.agentId = agentId
-        self.state = 1
-        self.timestep_of_assignment = timestep
-        self.agent_pos = agent_pos
 
 
     def getCurrent_SoC(self):
