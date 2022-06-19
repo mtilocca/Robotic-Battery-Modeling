@@ -41,7 +41,7 @@ class UC_Bank:
             self.Soc_model = 0 
 
         else: 
-            raise Exception("Sorry, connection type. Enter 0, 1")
+            raise Exception("Sorry, wrong connection type. Enter 0, 1")
 
 
         self.SoC_log.append(self.Soc_model)
@@ -105,3 +105,13 @@ class UC_Bank:
 if __name__ == "__main__":
 
     batt = UC_Bank(10, 100, 1) # 1 series connection of the cells, 0 parallel connection of the cells 
+
+
+# importance level: 1, 2, 3 ( 1 highest )
+
+# TODO create and test simulation loop -- 2
+# TODO create and calculate ECM model of the UC bank -- series and paralell connection -- 1
+# TODO translate Escooter model to python so that it can be imported here -- 3
+# TODO fill charge and discharge functions and disconnect -- 1
+# TODO implement the post simulation plotting -- 2
+
