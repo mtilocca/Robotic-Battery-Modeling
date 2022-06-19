@@ -15,7 +15,7 @@ class UC_Bank:
     #current_objective = ()
 
 
-    def __init__(self, n_cells, SoC_init, connection_type,state=0):
+    def __init__(self, n_cells, SoC_init, connection_type, state=0):
         
         self.state = state
         self.n_cells = n_cells 
@@ -31,10 +31,18 @@ class UC_Bank:
         self.En_dens = [19, 25] # Energy density Wh/L 
 
         # model creation -- ECM calculation 
+        if connection_type == 1 : # series connection  
+            self.V_model = 0
+            self.R_model = 0
+            self.Soc_model = 0 
+        elif connection_type == 0: # parallel connection 
+            self.V_model = 0
+            self.R_model = 0
+            self.Soc_model = 0 
 
-        self.V_model = 0
-        self.R_model = 0
-        self.Soc_model = 0 
+        else: 
+            raise Exception("Sorry, connection type. Enter 0, 1")
+
 
         self.SoC_log.append(self.Soc_model)
 
@@ -97,5 +105,3 @@ class UC_Bank:
 if __name__ == "__main__":
 
     batt = UC_Bank(10, 100, 1) # 1 series connection of the cells, 0 parallel connection of the cells 
-
-
