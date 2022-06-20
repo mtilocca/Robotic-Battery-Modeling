@@ -2,6 +2,7 @@ import numpy as np
 import pandas as pd 
 import matplotlib.pyplot as plt 
 import enum
+from Converters import Buck, Boost
 
 
 class UCBANK_State(enum.Enum):
@@ -32,16 +33,23 @@ class UC_Bank:
 
         # model creation -- ECM calculation 
         if connection_type == 1 : # series connection  
-            self.V_model = 0
-            self.R_model = 0
-            self.Soc_model = 0 
-        elif connection_type == 0: # parallel connection 
-            self.V_model = 0
-            self.R_model = 0
-            self.Soc_model = 0 
 
+            self.V_model = self.n_cells * self.V_cell_range[1]
+            self.R_model = self.n_cells * self.R_cell
+            self.Soc_model = SoC_init
+
+            self.V_model_log.append(self.V_model)
+            self.SoC_log.append(self.Soc_model)
+        elif connection_type == 0: # parallel connection 
+            self.V_model = self.V_cell_range[1]
+            self.R_model = (1/self.R_cell) * self.n_cells
+            self.Soc_model = SoC_init
+
+            self.V_model_log.append(self.V_model)
+            self.SoC_log.append(self.Soc_model)
         else: 
             raise Exception("Sorry, wrong connection type. Enter 0, 1")
+            exit()
 
 
         self.SoC_log.append(self.Soc_model)
@@ -81,6 +89,7 @@ class UC_Bank:
 
         else: 
             raise Exception("Sorry, invalid new state. Enter 0, 1 or 2")
+            exit()
 
     
     def run_simulation(self, timestep, current): 
