@@ -3,7 +3,7 @@ import pandas as pd
 import matplotlib.pyplot as plt 
 import enum
 from Converters import Buck, Boost
-
+from Data_fit import SoC_pred
 
 class UCBANK_State(enum.Enum):
     _Disconnected = 0
