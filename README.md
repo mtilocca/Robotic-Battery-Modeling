@@ -1,6 +1,7 @@
 # Battery-Modeling
 
 ## UC bank - Escooter 
+As input the work done in the [Bachelor Thesis](https://github.com/mtilocca/Hybrid_Battery_Escooter)
 
 The main components of the system are the following layers:
 
