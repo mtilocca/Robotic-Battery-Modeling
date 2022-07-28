@@ -83,7 +83,7 @@ if __name__ == "__main__":
     soc.normalize_data()
     
     
-    soc.fit_data(False)
+    soc.fit_data()
 
    # soc.Soc_emp.to_csv('SoC_map.csv', index=False, header=False)
 
