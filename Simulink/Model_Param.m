@@ -15,7 +15,13 @@
 
 PwR_profileStruct = load("PowerEScooter.mat"); 
 PwR_profile = PwR_profileStruct.fle;
-simLen = length(PwR_profileStruct.fle); 
+simLenM = length(PwR_profileStruct.fle); 
+simLen = zeros(1, simLenM);
+PwR_profile(1, simLenM+1) = PwR_profile(1, simLenM);
+
+for i = 1:simLenM+1
+    simLen(i) = i;
+end 
 
 
 % super capacitors params 
@@ -50,4 +56,4 @@ Buck_cap = 0;
 Boost_cap = 0;
 
 
-V_bus = 48; 
+V_bus = 60; 
