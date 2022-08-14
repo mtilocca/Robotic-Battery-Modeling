@@ -5,11 +5,11 @@ close all
 %%  E-scooter dynamics scenarios simulation 
 
 
-vehicle = EscooterDyn(20,180,48); % create an E-scooter object 
+vehicle = EscooterDyn(20,180,60); % create an E-scooter object 
 
 % simple WOT acceleration - from 5 km/h to 30 km/h 
 samp = true; 
-savePflow = false; 
+savePflow = true; 
 
 accelerating = true;
 acc.Vinit = 5/3.6; 
@@ -62,7 +62,7 @@ plot(t, vDynamics.PwReq)
 hold on 
 scatter(t, vDynamics.PwReq)
 grid on 
-grid minor 
+%grid minor 
 title("Powerflow simulation Escooter motor")
 xlabel("Time [s]")
 ylabel("Power [W]")
@@ -90,10 +90,25 @@ plot(t, vDynamics.Vprofile)
 hold on 
 scatter(t, vDynamics.Vprofile)
 grid on 
-grid minor 
+%grid minor 
 title("Speed simulation Escooter dynamics")
 xlabel("Time [s]")
 ylabel("Velocity [m/s]")
+
+
+
+
+figure(11)
+plot(t, vDynamics.PwReq/vehicle.voltageM)
+hold on 
+scatter(t, vDynamics.PwReq/vehicle.voltageM)
+grid on 
+%grid minor 
+title("Current profile Escooter dynamics")
+xlabel("Time [s]")
+ylabel("Current [A]")
+
+
 
 end 
 
